@@ -1,6 +1,6 @@
 const recipeSchema = {
     id: "a1b2c3d4e5f6", // generated unique code
-    title: "Smažený sýr", // name of the recipe
+    name: "Smažený sýr", // name of the recipe
     ingredients: ["sýr", "strouhanka", "vejce"], // list of ingredients
     instructions: "Obalte sýr a osmažte na pánvi.", // step-by-step instructions
     rating: 4.5, // average rating from users

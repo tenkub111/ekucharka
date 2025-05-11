@@ -7,7 +7,6 @@ const schema = {
     properties: {
         id: { type: "string" },
         name: { type: "string" },
-        description: { type: "string" },
         categoryId: { type: "string" }
     },
     required: ["id"],
