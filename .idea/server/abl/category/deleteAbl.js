@@ -26,6 +26,15 @@ async function DeleteAbl(req, res) {
             return;
         }
 
+        const category = categoryDao.get(reqParams.id);
+        if (!category) {
+            res.status(404).json({
+                code: "categoryNotFound",
+                message: `Category with id ${reqParams.id} not found`,
+            });
+            return;
+        }
+
         categoryDao.remove(reqParams.id);
         res.json({});
     } catch (e) {
