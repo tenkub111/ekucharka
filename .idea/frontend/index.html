@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Kuchařka</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1>E-Kuchařka</h1>
+
+    <!-- Filtrovat podle kategorie -->
+    <section id="filter-section">
+        <h2>Filtrovat podle kategorie</h2>
+        <select id="filter-category" onchange="loadRecipes()"></select>
+    </section>
+
+    <!-- Seznam receptů -->
+    <section id="recipe-section">
+        <h2>Recepty</h2>
+        <ul id="recipe-list"></ul>
+    </section>
+
+    <!-- Formulář: přidání / úprava receptu -->
+    <section id="add-recipe-section">
+        <h2>Přidat / Upravit recept</h2>
+        <input type="text" id="recipe-name" placeholder="Název receptu" />
+        <textarea id="recipe-ingredients" placeholder="Ingredience (každá na nový řádek)"></textarea>
+        <textarea id="recipe-instructions" placeholder="Postup přípravy"></textarea>
+        <select id="recipe-category"></select>
+        <input type="number" id="recipe-rating" placeholder="Hodnocení (1–5)" min="1" max="5" />
+        <label style="display: block; text-align: center;">
+            <input type="checkbox" id="recipe-favorite" /> Oblíbený
+        </label>
+        <button onclick="createRecipe()">Uložit recept</button>
+    </section>
+
+    <!-- Formulář: přidání kategorie -->
+    <section id="category-section">
+        <h2>Kategorie</h2>
+        <ul id="category-list"></ul>
+        <input type="text" id="new-category" placeholder="Název nové kategorie" />
+        <button onclick="createCategory()">Přidat kategorii</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

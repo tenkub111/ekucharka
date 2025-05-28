@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3030;
 
-const transactionController = require("./controller/categoryController");
-const categoryController = require("./controller/recipeController");
+const recipeController = require("./controller/recipeController");
+const categoryController = require("./controller/categoryController");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
