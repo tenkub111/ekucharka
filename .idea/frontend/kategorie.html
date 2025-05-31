@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Správa kategorií</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Správa kategorií</h1>
+
+        <h2>Formulář k přídání kategorie</h2>
+        <section>
+            <input type="text" id="new-category" placeholder="Nová kategorie" />
+            <button onclick="createCategory()">Přidat kategorii</button>
+        </section>
+
+        <a href="index.html"><button>⬅ Zpět na hlavní stránku</button></a>
+
+        <h2>Kategorie k úpravě/smazání</h2>
+
+        <section>
+            <ul id="category-list"></ul>
+        </section>
+
+        <a href="index.html"><button>⬅ Zpět na hlavní stránku</button></a>
+
+        <script src="sprava-kategorii.js" defer></script>
+    </body>
+</html>

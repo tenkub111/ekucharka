@@ -1,41 +1,40 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
-
 const categoryDao = require("../../dao/category-dao.js");
 
 const schema = {
     type: "object",
     properties: {
-        name: { type: "string" },
+        name: { type: "string" }
     },
     required: ["name"],
-    additionalProperties: false,
+    additionalProperties: false
 };
 
 async function CreateAbl(req, res) {
     try {
-        let category = req.body;
+        const category = req.body;
 
         const valid = ajv.validate(schema, category);
         if (!valid) {
             res.status(400).json({
                 code: "dtoInIsNotValid",
-                message: "dtoIn is not valid",
-                validationError: ajv.errors,
+                message: "Input is not valid",
+                validationError: ajv.errors
             });
             return;
         }
 
-        try {
-            category = categoryDao.create(category);
-        } catch (e) {
-            res.status(400).json({ ...e });
+        const existing = categoryDao.list().find(c => c.name.toLowerCase() === category.name.toLowerCase());
+        if (existing) {
+            res.status(400).json({ code: "duplicateCategory", message: "Kategorie s tímto názvem již existuje." });
             return;
         }
 
-        res.json(category);
+        const createdCategory = categoryDao.create(category);
+        res.json(createdCategory);
     } catch (e) {
-        res.status(500).json({ category: e.message });
+        res.status(500).json({ message: e.message });
     }
 }
 

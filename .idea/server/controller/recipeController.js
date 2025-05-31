@@ -14,7 +14,7 @@ router.get("/list", ListAbl);
 router.post("/create", CreateAbl);
 router.post("/update", UpdateAbl);
 router.post("/delete", DeleteAbl);
-router.post("/rate", RateAbl);           // pro hodnocení
-router.post("/favorite", FavoriteAbl);   // pro označení oblíbených
+router.post("/rate", RateAbl);
+router.post("/favorite", FavoriteAbl);
 
 module.exports = router;

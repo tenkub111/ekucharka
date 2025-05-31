@@ -15,43 +15,20 @@ const schema = {
 
 async function ListAbl(req, res) {
     try {
-        const input = req.query;
+        const categoryId = req.query.categoryId;
+        const isFavorite = req.query.isFavorite === "true";
 
-        const valid = ajv.validate(schema, input);
-        if (!valid) {
-            res.status(400).json({
-                code: "dtoInIsNotValid",
-                message: "Input is not valid",
-                validationError: ajv.errors,
-            });
-            return;
+        let recipes = recipeDao.list();
+
+        if (categoryId) {
+            recipes = recipes.filter(recipe => recipe.categoryId === categoryId);
         }
 
-        let recipeList = recipeDao.list();
-
-        // Filter by categoryId if provided
-        if (input.categoryId) {
-            recipeList = recipeList.filter(r => r.categoryId === input.categoryId);
+        if (req.query.isFavorite !== undefined) {
+            recipes = recipes.filter(recipe => !!recipe.isFavorite === isFavorite);
         }
 
-        // Sort if sortBy provided
-        if (input.sortBy) {
-            const sortField = input.sortBy;
-            const sortOrder = input.sortOrder === "desc" ? -1 : 1;
-
-            recipeList.sort((a, b) => {
-                const aVal = a[sortField] ?? 0;
-                const bVal = b[sortField] ?? 0;
-
-                if (typeof aVal === "boolean") {
-                    return (aVal === bVal) ? 0 : (aVal ? -1 : 1) * sortOrder;
-                }
-
-                return (aVal - bVal) * sortOrder;
-            });
-        }
-
-        res.json(recipeList);
+        res.json(recipes);
     } catch (e) {
         res.status(500).json({ message: e.message });
     }

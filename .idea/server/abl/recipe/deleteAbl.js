@@ -26,7 +26,7 @@ async function DeleteAbl(req, res) {
             return;
         }
 
-        const recipe = recipeDao.get(input.id);
+        const recipe = recipeDao.get(reqParams.id);
         if (!recipe) {
             res.status(404).json({ code: "recipeNotFound", message: "Recipe not found" });
             return;

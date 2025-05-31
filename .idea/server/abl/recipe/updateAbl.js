@@ -7,11 +7,19 @@ const schema = {
     properties: {
         id: { type: "string" },
         name: { type: "string" },
-        categoryId: { type: "string" }
+        ingredients: {
+            type: "array",
+            items: { type: "string" }
+        },
+        instructions: { type: "string" },
+        categoryId: { type: "string" },
+        rating: { type: "number" },
+        isFavorite: { type: "boolean" }
     },
-    required: ["id"],
-    additionalProperties: false,
+    required: ["id", "name", "categoryId"],
+    additionalProperties: false
 };
+
 
 async function UpdateAbl(req, res) {
     try {
